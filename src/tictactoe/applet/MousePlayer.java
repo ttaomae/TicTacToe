@@ -5,15 +5,28 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+/**
+ * Implementation of the {@code Player} interface which listens to buttons to
+ * determine its move.
+ * <p>
+ * This class checks the action command of the source of the action to
+ * determine its selection. It is the responsibility of the user of this class
+ * to correctly set the action command and add this as an {@code ActionListener}.
+ * The action commands should be set to a string representation of the
+ * index of the space it represents.
+ *
+ * @author Todd Taomae
+ */
 class MousePlayer implements Player, ActionListener
 {
     private int myMove;
 
-    public MousePlayer()
-    {
-        this.myMove = -1;
-    }
-
+    /**
+     * Returns the selected move for the specified {@code Board}.
+     *
+     * @param   b   board to evaluate
+     * @return      best move for the given board
+     */
     public int getMove(Board b)
     {
         this.myMove = -1;
@@ -30,6 +43,10 @@ class MousePlayer implements Player, ActionListener
         return this.myMove;
     }
 
+    /**
+     * Sets the move for this {@code MousePlayer} based on the action command
+     * of the source of the action.
+     */
     public void actionPerformed(ActionEvent ae)
     {
         String command = ae.getActionCommand();

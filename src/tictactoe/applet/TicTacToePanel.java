@@ -5,6 +5,13 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+/**
+ * A {@code JPanel} for TicTacToe. Games must be played to completion after the "New game"
+ * button is pressed. After a completed game, the winner is displayed.
+ * The user may select to play a one or two player game.
+ *
+ * @author Todd Taomae
+ */
 @SuppressWarnings("serial")
 public class TicTacToePanel extends JPanel implements ActionListener, Runnable
 {
@@ -12,11 +19,13 @@ public class TicTacToePanel extends JPanel implements ActionListener, Runnable
     private JLabel status;
     private JButton newGameButton;
 
-    private ButtonGroup gameMode;
     private JRadioButton onePlayerButtonA;
     private JRadioButton onePlayerButtonB;
     private JRadioButton twoPlayerButton;
 
+    /**
+     * Constructs a new {@code TicTacToePanel}.
+     */
     public TicTacToePanel()
     {
         this.setLayout(new BorderLayout(0, 10));
@@ -28,13 +37,14 @@ public class TicTacToePanel extends JPanel implements ActionListener, Runnable
         this.newGameButton = new JButton("New game");
         this.newGameButton.addActionListener(this);
 
-        this.gameMode = new ButtonGroup();
         this.onePlayerButtonA = new JRadioButton("One Player [X]", true);
         this.onePlayerButtonB = new JRadioButton("One Player [O]", false);
         this.twoPlayerButton  = new JRadioButton("Two players", false);
-        this.gameMode.add(this.onePlayerButtonA);
-        this.gameMode.add(this.onePlayerButtonB);
-        this.gameMode.add(this.twoPlayerButton);
+        // add buttons to group
+        ButtonGroup gameMode = new ButtonGroup();
+        gameMode.add(this.onePlayerButtonA);
+        gameMode.add(this.onePlayerButtonB);
+        gameMode.add(this.twoPlayerButton);
 
         // panel with button group
         JPanel p = new JPanel();
@@ -52,24 +62,33 @@ public class TicTacToePanel extends JPanel implements ActionListener, Runnable
 
     }
 
+    /**
+     * When the newGameButton is clicked, disable the button then set the player types
+     * based on which {@code JRadioButton} is selected.
+     */
     public void actionPerformed(ActionEvent ae)
     {
         if (ae.getSource() == this.newGameButton) {
             this.newGameButton.setEnabled(false);
 
-            // create new board
+            // set player types
             if (this.onePlayerButtonA.isSelected()) {
-                this.board.reset(PlayerType.MOUSE, PlayerType.ALPHABETA);
+                this.board.newPlayers(PlayerType.MOUSE, PlayerType.ALPHABETA);
+
             } else if (this.onePlayerButtonB.isSelected()) {
-                this.board.reset(PlayerType.ALPHABETA, PlayerType.MOUSE);
+                this.board.newPlayers(PlayerType.ALPHABETA, PlayerType.MOUSE);
+
             } else if (this.twoPlayerButton.isSelected()) {
-                this.board.reset(PlayerType.MOUSE, PlayerType.MOUSE);
+                this.board.newPlayers(PlayerType.MOUSE, PlayerType.MOUSE);
             }
 
             new Thread(this.board).start();
         }
     }
 
+    /**
+     * Updates the status message at the start and end of each game.
+     */
     public void run()
     {
         while (true) {

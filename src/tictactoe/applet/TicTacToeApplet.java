@@ -3,6 +3,11 @@ import tictactoe.*;
 
 import javax.swing.JApplet;
 
+/**
+ * {@code JApplet} for a {@code TicTacToePanel}.
+ *
+ * @author Todd Taomae
+ */
 @SuppressWarnings("serial")
 public class TicTacToeApplet extends JApplet
 {

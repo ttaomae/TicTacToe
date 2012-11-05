@@ -5,6 +5,15 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+/**
+ * A {@code JPanel} representation of a TicTacToe {@code Board}. Uses {@code JButton}s to
+ * represent each space.
+ * <p>
+ * The action command for each button is set to a string representation of the
+ * index of the space it represents.
+ *
+ * @author Todd Taomae
+ */
 @SuppressWarnings("serial")
 public class BoardPanel extends JPanel implements Runnable
 {
@@ -13,10 +22,14 @@ public class BoardPanel extends JPanel implements Runnable
     private Player playerO;
     private JButton[] spaces;
 
+    /**
+     * Constructs a new {@code BoardPanel} with the specified types of
+     *
+     * @param   x   type of the X {@code Player}
+     * @param   o   type of the o {@code Player}
+     */
     public BoardPanel(PlayerType x, PlayerType o)
     {
-        this.driver = null;
-
         switch (x) {
             case MOUSE:
                 this.playerX = new MousePlayer();
@@ -35,8 +48,11 @@ public class BoardPanel extends JPanel implements Runnable
                 break;
         }
 
+        this.driver = new TicTacToeDriver(this.playerX, this.playerO);
+
         this.setLayout(new GridLayout(3, 3));
 
+        // initialize buttons
         this.spaces = new JButton[9];
         for (int i = 0; i < this.spaces.length; i++) {
             JButton b = new JButton();
@@ -52,16 +68,23 @@ public class BoardPanel extends JPanel implements Runnable
         }
     }
 
+    /**
+     * Returns the winner of the current game.
+     *
+     * @return  the winner of the current game.
+     */
     public Mark getWinner()
     {
         return this.driver.getWinner();
     }
 
+    /**
+     * Starts a game and updates this {@code BoardPanel} at the end of each turn.
+     * <p>
+     * Notifies all threads waiting on this object at the start and end of each execution.
+     */
     public void run()
     {
-        this.driver = new TicTacToeDriver(this.playerX, this.playerO);
-
-
         // notify for start of game
         synchronized(this) {
             this.notifyAll();
@@ -73,10 +96,11 @@ public class BoardPanel extends JPanel implements Runnable
             b.setEnabled(true);
         }
 
+        this.driver.setPlayerX(this.playerX);
+        this.driver.setPlayerO(this.playerO);
         new Thread(this.driver).start();
 
         // TODO: analyze for race conditions
-        int previousTurn = 0;
         while (this.driver.getWinner() == Mark.NONE) {
             try {
                 synchronized(this.driver) {
@@ -100,7 +124,6 @@ public class BoardPanel extends JPanel implements Runnable
                                 break;
                         }
 
-                    previousTurn = this.driver.getTurn();
                     }
                 }
             } catch (InterruptedException ie) {
@@ -120,8 +143,13 @@ public class BoardPanel extends JPanel implements Runnable
         }
     }
 
-    // reset and create new driver
-    public void reset(PlayerType x, PlayerType o)
+    /**
+     * Creates new players for this {@code BoardPanel}.
+     *
+     * @param   x   player type for X player
+     * @param   o   player type for O player
+     */
+    public void newPlayers(PlayerType x, PlayerType o)
     {
         switch (x) {
             case MOUSE:
@@ -146,7 +174,6 @@ public class BoardPanel extends JPanel implements Runnable
                 this.playerO = new AlphaBetaPlayer(10);
                 break;
         }
-
     }
 
 
@@ -173,8 +200,11 @@ public class BoardPanel extends JPanel implements Runnable
 
         new Thread(p).start();
     }
-
 }
 
-
+/**
+ * Enumeration of possible types of players.
+ *
+ * @author Todd Taomae
+ */
 enum PlayerType {MOUSE, ALPHABETA}

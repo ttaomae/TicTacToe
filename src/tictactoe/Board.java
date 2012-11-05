@@ -3,15 +3,13 @@ package tictactoe;
 import java.util.*;
 
 /**
- * Representation of a TicTacToe Board. <br />
- * X always goes first.
- *
- * <p>The spaces are indicated with a zero-based index starting at the top-left
+ * Representation of a TicTacToe Board. X always goes first.
+ * <p>
+ * The spaces are indicated with a zero-based index starting at the top-left
  * proceeding right, then down.
  *
  * @author Todd Taomae
  */
-
 public class Board implements Cloneable
 {
     // class variables
@@ -29,18 +27,30 @@ public class Board implements Cloneable
         this.turn = 0;
     }
 
-    // assume t is correct turn number
-    private Board (Mark[] b, int t)
+    /**
+     * Constructs a new {@code Board} from the specified initial state. Assumes that the
+     * initial state is valid.
+     *
+     * @param   init    initial state
+     */
+    private Board (Mark[] init)
     {
-        this.board = new Mark[b.length];
-        System.arraycopy(b, 0, this.board, 0, b.length);
+        int t = 0;
+        this.board = new Mark[init.length];
+
+        for (int i = 0; i < init.length; i++) {
+            this.board[i] = init[i];
+            if (init[i] == Mark.X || init[i] == Mark.O) {
+                t++;
+            }
+        }
         this.turn = t;
     }
 
     /**
      * Finds winner of this board. Assumes that the board is valid.
      *
-     * @return  the winner of the board; X, O, NONE, or DRAW
+     * @return  the winner of this Board
      */
     public Mark getWinner()
     {
@@ -72,8 +82,12 @@ public class Board implements Cloneable
     }
 
     /**
-     * Plays a move on this board.
+     * Plays the specified move on this board.
      * Mark depends on which turn it is.
+     *
+     * @param   move    position of move to play
+     * @throws IllegalMoveException if the specified move is not a valid position
+     *              or if the position is occupied.
      */
     public void play(int move) throws IllegalMoveException
     {
@@ -87,11 +101,21 @@ public class Board implements Cloneable
         }
     }
 
+    /**
+     * Returns that current turn of this Board.
+     *
+     * @return the current turn of this board
+     */
     public int getTurn()
     {
         return this.turn;
     }
 
+    /**
+     * Returns the {@code Mark} for the current turn.
+     *
+     * @return      the {@code Mark} for the current turn.
+     */
     public Mark getCurrentPlayer()
     {
         if (this.turn % 2 == 0) {
@@ -101,15 +125,28 @@ public class Board implements Cloneable
         }
     }
 
-    public Mark markAt(int i)
+    /**
+     * Returns the {@code Mark} at the specified position.
+     *
+     * @param   pos   position to check for mark.
+     * @return  the mark at the specified position.
+     * @throws  IllegalArgumentException if the specified position is not a valid space.
+     */
+    public Mark markAt(int pos)
     {
-        if (i < 0 || i >= this.board.length) {
+        if (pos < 0 || pos >= this.board.length) {
             throw new IllegalArgumentException();
         } else {
-            return this.board[i];
+            return this.board[pos];
         }
     }
 
+    /**
+     * Returns the {@code Mark} opposite of the specified {@code Mark}.
+     *
+     * @param   m   {@code Mark} to find the opposite of.
+     * @return  the {@code Mark} opposite the specified {@code Mark}
+     */
     public static Mark opposite(Mark m) {
         if (m == Mark.X) {
             return Mark.O;
@@ -120,14 +157,9 @@ public class Board implements Cloneable
         }
     }
 
-    public Mark[] getBoard()
-    {
-        return Arrays.copyOf(this.board, this.board.length);
-    }
-
     public Object clone()
     {
-        return new Board(this.board, this.turn);
+        return new Board(this.board);
     }
 
     public String toString()
