@@ -98,6 +98,7 @@ public class BoardPanel extends JPanel implements Runnable
 
         this.driver.setPlayerX(this.playerX);
         this.driver.setPlayerO(this.playerO);
+        this.driver.newBoard();
         new Thread(this.driver).start();
 
         // TODO: analyze for race conditions

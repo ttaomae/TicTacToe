@@ -129,4 +129,13 @@ public class TicTacToeDriver implements Runnable
     {
         this.playerO = o;
     }
+
+    /**
+     * Creates a new board for this driver. It is the responsibility of the user
+     * ensure that the driver is not in the middle of a game.
+     */
+    public void newBoard()
+    {
+        this.board = new Board();
+    }
 }
