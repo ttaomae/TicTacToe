@@ -103,7 +103,7 @@ public class TicTacToeDriver implements Runnable
     {
         Mark[] result = new Mark[9];
 
-        for (int i = 0; i < 0; i++) {
+        for (int i = 0; i < 9; i++) {
             result[i] = this.board.markAt(i);
         }
 
