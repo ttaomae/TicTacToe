@@ -1,5 +1,6 @@
-create executable jar
-create applet
+STANDALONE
+run 'TicTacToe.jar'
 
-
-BUGS
+APPLET
+open 'index.html'
+'TicTacToeApplet.jar' must be in the same director
