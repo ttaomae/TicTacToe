@@ -141,22 +141,6 @@ public class Board implements Cloneable
         }
     }
 
-    /**
-     * Returns the {@code Mark} opposite of the specified {@code Mark}.
-     *
-     * @param   m   {@code Mark} to find the opposite of.
-     * @return  the {@code Mark} opposite the specified {@code Mark}
-     */
-    public static Mark opposite(Mark m) {
-        if (m == Mark.X) {
-            return Mark.O;
-        } else if (m == Mark.O) {
-            return Mark.X;
-        } else {
-            throw new IllegalArgumentException("Mark must be X or O");
-        }
-    }
-
     public Object clone()
     {
         return new Board(this.board);

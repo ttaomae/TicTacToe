@@ -195,7 +195,7 @@ class MinimaxPlayer implements Player
         if (depth == 0 || board.getWinner() != Mark.NONE) {
             if (board.getWinner() == this.myMark) {
                 return MAX_SCORE;
-            } else if (board.getWinner() == Board.opposite(this.myMark)) {
+            } else if (board.getWinner() == this.myMark.opposite()) {
                 return MIN_SCORE;
             } else {
                 return 0;

@@ -6,4 +6,22 @@ package tictactoe;
  *
  * @author Todd Taomae
  */
-public enum Mark {X, O, NONE, DRAW}
+public enum Mark {
+    X, O, NONE, DRAW;
+
+    /**
+     * Returns the opposite of this {@code Mark}.
+     *
+     * @return  the opposite of this {@code Mark}
+     */
+    public Mark opposite() {
+        switch (this) {
+            case X:
+                return O;
+            case O:
+                return X;
+            default:
+                return this;
+        }
+    }
+}
