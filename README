@@ -5,3 +5,6 @@ APPLET
 open 'index.html'
 'TicTacToeApplet.jar' must be in the same directory
 deployed at http://www2.hawaii.edu/~ttaomae/apps/tic_tac_toe/
+
+BUGS
+  -board does not always update correctly

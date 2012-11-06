@@ -76,10 +76,10 @@ public class TicTacToePanel extends JPanel implements ActionListener, Runnable
                 this.board.newPlayers(new MousePlayer(), new AlphaBetaPlayer(10));
 
             } else if (this.onePlayerButtonB.isSelected()) {
-                this.board.newPlayers(new MousePlayer(), new AlphaBetaPlayer(10));
+                this.board.newPlayers(new AlphaBetaPlayer(10), new MousePlayer());
 
             } else if (this.twoPlayerButton.isSelected()) {
-                this.board.newPlayers(new MousePlayer(), new AlphaBetaPlayer(10));
+                this.board.newPlayers(new MousePlayer(), new MousePlayer());
             }
 
             new Thread(this.board).start();

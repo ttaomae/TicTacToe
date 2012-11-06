@@ -70,11 +70,6 @@ public class BoardPanel extends JPanel implements Runnable
      */
     public void run()
     {
-        // notify for start of game
-        synchronized(this) {
-            this.notifyAll();
-        }
-
         // clear and enable buttons
         for (JButton b : this.spaces) {
             b.setText("");
@@ -85,6 +80,11 @@ public class BoardPanel extends JPanel implements Runnable
         this.driver.setPlayerO(this.playerO);
         this.driver.newBoard();
         new Thread(this.driver).start();
+
+        // notify for start of game
+        synchronized(this) {
+            this.notifyAll();
+        }
 
         // TODO: analyze for race conditions
         while (this.driver.getWinner() == Mark.NONE) {
