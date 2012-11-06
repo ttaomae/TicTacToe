@@ -60,7 +60,7 @@ public class AlphaBetaPlayer implements Player
      * @param   beta    beat cutoff (maximum)
      * @return  the index of the best move
      */
-    public int alphabetaRoot(Board board, int depth, int alpha, int beta)
+    private int alphabetaRoot(Board board, int depth, int alpha, int beta)
     {
         int bestHeuristic = MIN_SCORE;
         HashMap<Integer, Board> possibleMoves = new HashMap<Integer, Board>();
@@ -108,7 +108,7 @@ public class AlphaBetaPlayer implements Player
      * @param   beta    beat cutoff (maximum)
      * @return  heuristic value of the best move
      */
-    public int alphabeta(Board board, int depth, int alpha, int beta)
+    private int alphabeta(Board board, int depth, int alpha, int beta)
     {
         // if terminal node, return heuristic.
         if (depth == 0 || board.getWinner() != Mark.NONE) {

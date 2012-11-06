@@ -31,7 +31,7 @@ public class TicTacToePanel extends JPanel implements ActionListener, Runnable
         this.setLayout(new BorderLayout(0, 10));
         this.setPreferredSize(new Dimension(150, 250));
 
-        this.board = this.board = new BoardPanel(PlayerType.MOUSE, PlayerType.ALPHABETA);
+        this.board = this.board = new BoardPanel(new MousePlayer(), new AlphaBetaPlayer(10));
 
         this.status = new JLabel(" ");
         this.newGameButton = new JButton("New game");
@@ -73,13 +73,13 @@ public class TicTacToePanel extends JPanel implements ActionListener, Runnable
 
             // set player types
             if (this.onePlayerButtonA.isSelected()) {
-                this.board.newPlayers(PlayerType.MOUSE, PlayerType.ALPHABETA);
+                this.board.newPlayers(new MousePlayer(), new AlphaBetaPlayer(10));
 
             } else if (this.onePlayerButtonB.isSelected()) {
-                this.board.newPlayers(PlayerType.ALPHABETA, PlayerType.MOUSE);
+                this.board.newPlayers(new MousePlayer(), new AlphaBetaPlayer(10));
 
             } else if (this.twoPlayerButton.isSelected()) {
-                this.board.newPlayers(PlayerType.MOUSE, PlayerType.MOUSE);
+                this.board.newPlayers(new MousePlayer(), new AlphaBetaPlayer(10));
             }
 
             new Thread(this.board).start();

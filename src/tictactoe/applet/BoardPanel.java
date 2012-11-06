@@ -28,25 +28,10 @@ public class BoardPanel extends JPanel implements Runnable
      * @param   x   type of the X {@code Player}
      * @param   o   type of the o {@code Player}
      */
-    public BoardPanel(PlayerType x, PlayerType o)
+    public BoardPanel(Player x, Player o)
     {
-        switch (x) {
-            case MOUSE:
-                this.playerX = new MousePlayer();
-                break;
-            case ALPHABETA:
-                this.playerX = new AlphaBetaPlayer(10);
-                break;
-        }
-
-        switch (o) {
-            case MOUSE:
-                this.playerO = new MousePlayer();
-                break;
-            case ALPHABETA:
-                this.playerO = new AlphaBetaPlayer(10);
-                break;
-        }
+        this.playerX = x;
+        this.playerO = o;
 
         this.driver = new TicTacToeDriver(this.playerX, this.playerO);
 
@@ -150,30 +135,15 @@ public class BoardPanel extends JPanel implements Runnable
      * @param   x   player type for X player
      * @param   o   player type for O player
      */
-    public void newPlayers(PlayerType x, PlayerType o)
+    public void newPlayers(Player x, Player o)
     {
-        switch (x) {
-            case MOUSE:
-                this.playerX = new MousePlayer();
-                for (JButton b : spaces) {
-                    b.addActionListener(this.playerX);
-                }
-                break;
-            case ALPHABETA:
-                this.playerX = new AlphaBetaPlayer(10);
-                break;
-        }
+        this.playerX = x;
+        this.playerO = o;
 
-        switch (o) {
-            case MOUSE:
-                this.playerO = new MousePlayer();
-                for (JButton b : spaces) {
-                    b.addActionListener(this.playerO);
-                }
-                break;
-            case ALPHABETA:
-                this.playerO = new AlphaBetaPlayer(10);
-                break;
+        for (JButton b : this.spaces) {
+            b.addActionListener(this.playerX);
+            b.addActionListener(this.playerO);
+
         }
     }
 
@@ -193,7 +163,7 @@ public class BoardPanel extends JPanel implements Runnable
         JFrame frame = new JFrame("TicTacToe");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        BoardPanel p = new BoardPanel(PlayerType.MOUSE, PlayerType.ALPHABETA);
+        BoardPanel p = new BoardPanel(new MousePlayer(), new AlphaBetaPlayer(10));
         frame.add(p);
 
         frame.pack();
@@ -202,10 +172,3 @@ public class BoardPanel extends JPanel implements Runnable
         new Thread(p).start();
     }
 }
-
-/**
- * Enumeration of possible types of players.
- *
- * @author Todd Taomae
- */
-enum PlayerType {MOUSE, ALPHABETA}

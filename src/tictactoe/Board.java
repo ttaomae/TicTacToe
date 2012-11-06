@@ -48,7 +48,7 @@ public class Board implements Cloneable
     }
 
     /**
-     * Finds winner of this board. Assumes that the board is valid.
+     * Returns the winner of this board. Assumes that the board is valid.
      *
      * @return  the winner of this Board
      */
@@ -141,11 +141,21 @@ public class Board implements Cloneable
         }
     }
 
+    /**
+     * Returns a copy of this {@code Board}.
+     *
+     * @return  a copy of this {@code Board}
+     */
     public Object clone()
     {
         return new Board(this.board);
     }
 
+    /**
+     * Returns a {@code String} representation of this {@code Board}.
+     *
+     * @return  a {@code String} representation of this {@code Board}.
+     */
     public String toString()
     {
         String result = "";

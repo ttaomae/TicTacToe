@@ -149,7 +149,7 @@ class MinimaxPlayer implements Player
      * @param   depth   maximum search depth
      * @return  the index of the selected move
      */
-    public int minimaxRoot(Board board, int depth)
+    private int minimaxRoot(Board board, int depth)
     {
         int bestHeuristic = MIN_SCORE;
         HashMap<Integer, Board> possibleMoves = new HashMap<Integer, Board>();
@@ -189,7 +189,7 @@ class MinimaxPlayer implements Player
      * @param   depth   maximum search depth
      * @return  heuristic value of the best move
      */
-    public int minimax(Board board, int depth)
+    private int minimax(Board board, int depth)
     {
         // if terminal node, return heuristic.
         if (depth == 0 || board.getWinner() != Mark.NONE) {
