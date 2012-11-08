@@ -24,4 +24,4 @@ Deployed at http://www2.hawaii.edu/~ttaomae/apps/tic_tac_toe/
 
 
 ## Known Bugs
-*Board does not always update correctly
+* Board does not always update correctly
