@@ -12,7 +12,7 @@
     * `jar -cvfe TicTacToeApplet.jar tictactoe.applet.TicTacToeApplet tictactoe/*.class tictactoe/applet/*.class`
     * Move to same directory as 'index.html'
 
-## Execution
+## Execution Instructions
 ### Standalone
 * Run 'TicTacToe.jar'
 
