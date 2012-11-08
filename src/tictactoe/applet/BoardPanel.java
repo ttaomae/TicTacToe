@@ -109,8 +109,9 @@ public class BoardPanel extends JPanel implements Runnable
                                 this.spaces[i].setEnabled(true);
                                 break;
                         }
-
                     }
+
+                    this.repaint();
                 }
             } catch (InterruptedException ie) {
                 // if thread is interruped, end game
