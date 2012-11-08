@@ -87,36 +87,35 @@ public class BoardPanel extends JPanel implements Runnable
         }
 
         // TODO: analyze for race conditions
+            // buttons will not always update properly
         while (this.driver.getWinner() == Mark.NONE) {
-            try {
-                synchronized(this.driver) {
+            synchronized(this.driver) {
+                try {
                     // wait until driver notifies after a move is played
                     this.driver.wait();
-
-                    Mark[] state = this.driver.getState();
-                    for (int i = 0; i < state.length; i++) {
-                        switch(state[i]) {
-                            case X:
-                                this.spaces[i].setText("X");
-                                this.spaces[i].setEnabled(false);
-                                break;
-                            case O:
-                                this.spaces[i].setText("O");
-                                this.spaces[i].setEnabled(false);
-                                break;
-                            case NONE:
-                                this.spaces[i].setText("");
-                                this.spaces[i].setEnabled(true);
-                                break;
-                        }
-                    }
-
-                    this.repaint();
+                } catch (InterruptedException ie) {
+                    // if thread is interruped, end game
+                    System.out.println("thread interrupted");
+                    break;
                 }
-            } catch (InterruptedException ie) {
-                // if thread is interruped, end game
-                System.out.println("thread interrupted");
-                break;
+
+                Mark[] state = this.driver.getState();
+                for (int i = 0; i < state.length; i++) {
+                    switch(state[i]) {
+                        case X:
+                            this.spaces[i].setText("X");
+                            this.spaces[i].setEnabled(false);
+                            break;
+                        case O:
+                            this.spaces[i].setText("O");
+                            this.spaces[i].setEnabled(false);
+                            break;
+                        case NONE:
+                            this.spaces[i].setText("");
+                            this.spaces[i].setEnabled(true);
+                            break;
+                    }
+                }
             }
         }
 
