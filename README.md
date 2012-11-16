@@ -5,14 +5,17 @@
 
 ### Executable .jar
 * After compiling, while still in the 'src' directory
-    * `jar -cvfe TicTacToe.jar tictactoe.applet.TicTacToePanel tictactoe/*.class tictactoe/applet/*.class`
+    * `jar -cvfe ../TicTacToe.jar tictactoe.applet.TicTacToePanel tictactoe/*.class tictactoe/applet/*.class`
 
 ### Applet
 * After compiling, while still in the 'src' directory
-    * `jar -cvfe TicTacToeApplet.jar tictactoe.applet.TicTacToeApplet tictactoe/*.class tictactoe/applet/*.class`
+    * `jar -cvfe ../TicTacToeApplet.jar tictactoe.applet.TicTacToeApplet tictactoe/*.class tictactoe/applet/*.class`
     * Move to same directory as 'index.html'
 
 ## Execution
+### Command line
+* Navigate to the 'src' directory
+* `java tictactoe.applet.TicTacToePanel`
 ### Standalone
 * Run 'TicTacToe.jar'
 
@@ -21,7 +24,3 @@
 * Open 'index.html'
 
 Deployed at http://www2.hawaii.edu/~ttaomae/apps/tic_tac_toe/
-
-
-## Known Bugs
-*Board does not always update correctly

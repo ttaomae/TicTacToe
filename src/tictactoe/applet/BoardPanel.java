@@ -86,10 +86,8 @@ public class BoardPanel extends JPanel implements Runnable
             this.notifyAll();
         }
 
-        // TODO: analyze for race conditions
-            // buttons will not always update properly
-        while (this.driver.getWinner() == Mark.NONE) {
-            synchronized(this.driver) {
+        synchronized(this.driver) {
+            while (this.driver.getWinner() == Mark.NONE) {
                 try {
                     // wait until driver notifies after a move is played
                     this.driver.wait();
@@ -99,6 +97,7 @@ public class BoardPanel extends JPanel implements Runnable
                     break;
                 }
 
+                // update buttons
                 Mark[] state = this.driver.getState();
                 for (int i = 0; i < state.length; i++) {
                     switch(state[i]) {
