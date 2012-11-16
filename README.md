@@ -12,10 +12,12 @@
     * `jar -cvfe ../TicTacToeApplet.jar tictactoe.applet.TicTacToeApplet tictactoe/*.class tictactoe/applet/*.class`
     * Move to same directory as 'index.html'
 
-## Execution
+<<<<<<< HEAD
+## Execution Instructions
 ### Command line
 * Navigate to the 'src' directory
 * `java tictactoe.applet.TicTacToePanel`
+
 ### Standalone
 * Run 'TicTacToe.jar'
 
