@@ -71,8 +71,10 @@ public class AlphaBetaPlayer implements Player
         for (int i = 0; i < 9; i++) {
             Board temp = (Board)board.clone();
             try {
-                temp.play(i);
-                possibleMoves.put(i, temp);
+                if (temp.markAt(i) == Mark.NONE) {
+                    temp.play(i);
+                    possibleMoves.put(i, temp);
+                }
 
             } catch (IllegalMoveException e) {
                 // should never reach here, since valid moves are checked above
