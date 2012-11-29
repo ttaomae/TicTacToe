@@ -29,7 +29,7 @@ class MousePlayer implements Player, ActionListener
      */
     public int getMove(Board b)
     {
-        this.myMove = -1;
+        this.myMove = Board.INVALID_MOVE;
 
         // wait until actionPerformed() notifies
         try {

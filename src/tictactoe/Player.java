@@ -44,8 +44,8 @@ class SequentialPlayer implements Player
             }
         }
 
-        // return -1 by default
-        return -1;
+
+        return Board.INVALID_MOVE;
     }
 
     public void actionPerformed(ActionEvent ae) { /* do nothing */ }
@@ -77,17 +77,17 @@ class KeyboardPlayer implements Player
      */
     public int getMove(Board b)
     {
-        int result = -1;
+        int result = Board.INVALID_MOVE;
 
-        while (result == -1) {
+        while (result == Board.INVALID_MOVE) {
             try {
                 result = Integer.parseInt(keybd.nextLine());
             } catch (NumberFormatException e) {
-                result = -1;
+                result = Board.INVALID_MOVE;
             }
 
             if (result < 0  || result >= 9) {
-                result = -1;
+                result = Board.INVALID_MOVE;
             }
         }
 

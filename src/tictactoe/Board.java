@@ -12,6 +12,8 @@ import java.util.*;
  */
 public class Board implements Cloneable
 {
+    /** Value of an invalid move */
+    public static final int INVALID_MOVE = -1;
     // class variables
     private Mark[] board;
     private int turn;
@@ -28,8 +30,8 @@ public class Board implements Cloneable
     }
 
     /**
-     * Constructs a new {@code Board} from the specified initial state. Assumes that the
-     * initial state is valid.
+     * Constructs a new {@code Board} from the specified initial state.
+     * Assumes that the initial state is valid.
      *
      * @param   init    initial state
      */

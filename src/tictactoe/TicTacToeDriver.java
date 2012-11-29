@@ -14,8 +14,6 @@ public class TicTacToeDriver implements Runnable
     private Player playerX;
     private Player playerO;
     private Board board;
-    private Mark winner;
-    private boolean endGame;
 
     /**
      * Constructs a new {@code TicTacToeDriver} with the specified {@code Player}s.
@@ -43,9 +41,9 @@ public class TicTacToeDriver implements Runnable
 
         // loop until there is a winner
         while (this.board.getWinner() == Mark.NONE) {
-            int move = -1;
+            int move = Board.INVALID_MOVE;
 
-            if (this.board.getTurn() % 2 == 0) {
+            if (this.board.getCurrentPlayer() == Mark.X) {
                 move = this.playerX.getMove((Board)this.board.clone());
             } else {
                 move = this.playerO.getMove((Board)this.board.clone());
@@ -61,6 +59,7 @@ public class TicTacToeDriver implements Runnable
             } catch (IllegalMoveException e) {
                 System.err.println("Player " + this.board.getCurrentPlayer()
                                  + " has performed an illegal move!");
+                // exit fromwhile loop
                 break;
             }
 
