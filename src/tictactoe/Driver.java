@@ -9,19 +9,19 @@ import java.util.Scanner;
  *
  * @author Todd Taomae
  */
-public class TicTacToeDriver implements Runnable
+public class Driver implements Runnable
 {
     private Player playerX;
     private Player playerO;
     private Board board;
 
     /**
-     * Constructs a new {@code TicTacToeDriver} with the specified {@code Player}s.
+     * Constructs a new {@code Driver} with the specified {@code Player}s.
      *
      * @param x     the X {@code Player}.
      * @param o     the O {@code Player}.
      */
-    public TicTacToeDriver(Player x, Player o)
+    public Driver(Player x, Player o)
     {
         this.playerX = x;
         this.playerO = o;

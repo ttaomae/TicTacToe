@@ -17,7 +17,7 @@ import javax.swing.*;
 @SuppressWarnings("serial")
 public class BoardPanel extends JPanel implements Runnable
 {
-    private TicTacToeDriver driver;
+    private Driver driver;
     private Player playerX;
     private Player playerO;
     private JButton[] spaces;
@@ -33,7 +33,7 @@ public class BoardPanel extends JPanel implements Runnable
         this.playerX = x;
         this.playerO = o;
 
-        this.driver = new TicTacToeDriver(this.playerX, this.playerO);
+        this.driver = new Driver(this.playerX, this.playerO);
 
         this.setLayout(new GridLayout(3, 3));
 
