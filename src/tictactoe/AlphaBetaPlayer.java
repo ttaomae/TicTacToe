@@ -23,7 +23,7 @@ public class AlphaBetaPlayer implements Player
     /**
      * Constructs a new player with the specified maximum search depth.
      *
-     * @param   depth   maximum search depth
+     * @param   d maximum search depth
      */
     public AlphaBetaPlayer(int d)
     {

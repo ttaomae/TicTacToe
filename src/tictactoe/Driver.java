@@ -96,7 +96,7 @@ public class Driver implements Runnable
     /**
      * Returns the state of the current game as a 1-D array of {@code Mark}s
      * with indices corresponding to those of the {@code Board} class.
-     * @ return     the state of the current game.
+     * @return     the state of the current game.
      */
     public Mark[] getState()
     {
