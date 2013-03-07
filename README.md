@@ -1,6 +1,6 @@
 #TicTacToe
 
-For addition information about this project, check out the following links.
+For addition information about this project, see the following pages.
 
 * [GitHub page](http://ttaomae.github.com/TicTacToe/)
 * [User Guide](https://github.com/ttaomae/TicTacToe/wiki/User-Guide)
