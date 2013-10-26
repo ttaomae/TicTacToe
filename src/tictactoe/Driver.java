@@ -59,8 +59,7 @@ public class Driver implements Runnable
             } catch (IllegalMoveException e) {
                 System.err.println("Player " + this.board.getCurrentPlayer()
                                  + " has performed an illegal move!");
-                // exit fromwhile loop
-                break;
+                // do nothing, let player try again
             }
 
             // print curent state
